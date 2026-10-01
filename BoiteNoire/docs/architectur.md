@@ -22,11 +22,7 @@
 
 
 ---
-<<<<<<< HEAD
 ## JUSTIFICATION DES CHOIX
-=======
-## JUSTIFICATION DES CHOIX 
->>>>>>> b644eda25a254241ed25dd6e70488f007b04c9a2
 
 Donc les champs `_id`, `eventType` et `timestamp` permettent de filtrer et de regrouper les events.
 

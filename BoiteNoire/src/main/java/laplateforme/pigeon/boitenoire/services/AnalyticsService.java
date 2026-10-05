@@ -121,16 +121,16 @@ public class AnalyticsService {
         MatchOperation matchStage = Aggregation.match(
             Criteria.where("eventType").is("REQUEST")
                 .and("subObjects.endpoint").ne(null)
-                .and("subObjects.timeResponse").ne(null)
+                .and("subObjects.responsesTimeMs").ne(null)
         );
 
         // Sort latencies ascending for percentile lookup
-        SortOperation sortStage = Aggregation.sort(Sort.Direction.ASC, "subObjects.timeResponse");
+        SortOperation sortStage = Aggregation.sort(Sort.Direction.ASC, "subObjects.responsesTimeMs");
 
         // Group by endpoint, calculate average and collect latencies
         GroupOperation groupStage = Aggregation.group("subObjects.endpoint")
-            .avg("subObjects.timeResponse").as("avgResponseTime")
-            .push("subObjects.timeResponse").as("times")
+            .avg("subObjects.responsesTimeMs").as("avgResponseTime")
+            .push("subObjects.responsesTimeMs").as("times")
             .count().as("total");
 
         // Pick 95th percentile value from sorted latencies

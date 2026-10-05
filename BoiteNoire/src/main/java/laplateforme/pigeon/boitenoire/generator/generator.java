@@ -44,6 +44,7 @@ public class generator implements CommandLineRunner {
         // Methods
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("CONNECTED : " + mongoTemplate.getDb().getName());
         Random random = new Random();
         List<LogEvent> query = new ArrayList<>();
         int totalEvents = 100_000;
@@ -56,7 +57,7 @@ public class generator implements CommandLineRunner {
                 mongoTemplate.insertAll(query);
                 query.clear();
 
-                System.out.println((i + 1) + " / " + totalEvents + "Generate Logs");
+                System.out.println((i + 1) + " / " + totalEvents + " Generate Logs");
             }
         }
     }
